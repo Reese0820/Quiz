@@ -20,8 +20,25 @@ def test_success(client):
         'currency': 'TWD'
     })
     assert response.status_code == 200
+    assert response.json['id'] == 'A0000001'
+    assert response.json['name'] == 'Melody Holiday Inn'
     assert response.json['price'] == 1500.0
     assert response.json['currency'] == 'TWD'
+
+def test_name_not_in_english_failure(client):
+    response = client.post('/api/orders', json={
+        'id': 'A0000002',
+        'name': 'melody holiday inn@',
+        'address': {
+            'city': 'taipei-city',
+            'district': 'da-an-district',
+            'street': 'fuxing-south-road'
+        },
+        'price': '1500',
+        'currency': 'TWD'
+    })
+    assert response.status_code == 400
+    assert 'Name contains non-English characters' in response.json['error']
 
 def test_name_not_capitalized_failure(client):
     response = client.post('/api/orders', json={
