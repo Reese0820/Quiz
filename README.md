@@ -51,7 +51,7 @@ LIMIT 10;
 1. **策略模式 (Strategy Pattern)**:
    - 先拆分目標至基礎，再根據小目標建立相同使用方式之函式，以達到方便管理、替換維護之效果。
 
-## API 實作測驗之測試方式
+## API 實作測驗之執行方式
 ### Requirement
 [docker](https://www.docker.com/products/docker-desktop/)
 ### Installation ( Windows )
